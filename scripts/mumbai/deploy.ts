@@ -7,7 +7,9 @@ async function main() {
   const [deployer] = await ethers.getSigners();
 
   console.log('Deploying...');
+  console.log("deployer.address", deployer.address)
   const attestor = process.env['MUMBAI_LENSAPI_ORACLE_ENDPOINT'] || deployer.address;  // When deploy for real e2e test, change it to the real attestor wallet.
+  console.log("attestor:", attestor)
   const consumer = await TestLensApiConsumerContract.deploy(attestor);
   await consumer.deployed();
   console.log('Deployed', {
